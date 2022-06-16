@@ -1,19 +1,21 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class SumTarget {
-    public static void sumTarget(int[]arr, int target) {
-    for(int i=0; i<arr.length; i++){
-        int j=2;
+    public static int [] sumTarget(int [] nums, int target){
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            int complement = target- nums[i];
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i],i );
+        }throw new IllegalArgumentException("No two sum solution");
 
-          if(arr[i]+arr[j]==target){
-            System.out.println(i+" "+j);
-          }
-        }
     }
-
-
-
     public static void main(String[] args) {
-        int[] arr = {8,3,4,1,4,1,2};
-        sumTarget(arr,8);
+        int [] nums = {2,7,11,15};
+        sumTarget(nums, 9);
 
     }
 }
